@@ -1,8 +1,5 @@
-A blessed fork of https://bitbucket.org/akoha/django-lean with a new maintainer.
 
-Contact @jdunck on twitter if you need support, or the django-lean Google Group.
-
-Existing, known issues, are here: https://bitbucket.org/akoha/django-lean/issues?status=new&status=open but please report new issues here on Github.
+This is an un-blessed fork of Jeremy Dunck's blessed fork [https://github.com/anandhenry2002/django-lean] of Akoha's Django-Lean [https://bitbucket.org/akoha/django-lean/wiki/Home]
 
 <<toc Home>>
 
@@ -144,14 +141,14 @@ Here is an example of defining a goal type using the Django shell:
 {{{
 #!pycon
 erik-wrights-macbook-pro:akoha erikwright$ ./manage.py shell --plain
-Python 2.6.2 (r262:71600, Jul 16 2009, 12:11:28) 
+Python 2.6.2 (r262:71600, Jul 16 2009, 12:11:28)
 [GCC 4.0.1 (Apple Inc. build 5490)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 (InteractiveConsole)
 >>> from experiments.models import GoalType
 >>> GoalType.objects.create(name="signup")
 <GoalType: <GoalType: signup>>
->>> 
+>>>
 }}}
 
 ==== Recording Conversions ====
@@ -276,13 +273,13 @@ added 46 changesets with 155 changes to 69 files
 updating working directory
 65 files updated, 0 files merged, 0 files removed, 0 files unresolved
 erik-wrights-macbook-pro:~ erikwright$ cd django-lean
-erik-wrights-macbook-pro:django-lean erikwright$ /usr/bin/python bootstrap.py 
+erik-wrights-macbook-pro:django-lean erikwright$ /usr/bin/python bootstrap.py
 Creating directory '/Users/erikwright/django-lean/bin'.
 Creating directory '/Users/erikwright/django-lean/parts'.
 Creating directory '/Users/erikwright/django-lean/eggs'.
 Creating directory '/Users/erikwright/django-lean/develop-eggs'.
 Generated script '/Users/erikwright/django-lean/bin/buildout'.
-erik-wrights-macbook-pro:django-lean erikwright$ ./bin/buildout 
+erik-wrights-macbook-pro:django-lean erikwright$ ./bin/buildout
 Develop: '/Users/erikwright/django-lean/.'
 package init file 'experiments/tests/data/__init__.py' not found (or not a regular file)
 Getting distribution for 'djangorecipe'.
@@ -330,7 +327,7 @@ Ran 30 tests in 24.305s
 
 OK
 Destroying test database...
-erik-wrights-macbook-pro:django-lean erikwright$ 
+erik-wrights-macbook-pro:django-lean erikwright$
 }}}
 
 == Other Resources ==

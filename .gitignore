@@ -12,3 +12,4 @@ bin/
 develop-eggs/
 *.egg-info/
 .installed.cfg
+build/
