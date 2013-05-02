@@ -37,7 +37,6 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    package_dir = {'': 'src'},
     packages=[
         'django_lean',
         'django_lean.experiments',
@@ -60,6 +59,5 @@ setup(
                                     'templates/experiments/include/*.html'],
         'django_lean.experiments.tests': ['data/*.json'],
     },
-    install_requires=['django >= 1.0'],
-    tests_require=['BeautifulSoup', 'mox'],
+    install_requires=['django >= 1.0', 'BeautifulSoup', 'mox'],
 )
