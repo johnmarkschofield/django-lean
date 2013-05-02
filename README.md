@@ -7,13 +7,11 @@ This is an un-blessed fork of [Jeremy Dunck's blessed fork](https://github.com/a
 
 ## Welcome
 
-django-lean aims to be a collection of tools for [[http://www.startuplessonslearned.com/search/label/lean%20startup|Lean Startups]] using the Django platform. Currently it provides a framework for implementing [[http://www.startuplessonslearned.com/search/label/split-test|split-test experiments]] in JavaScript, Python, or Django template code along with administrative views for analyzing the results of those experiments.
-
-django-lean is one of the more mature AB testing systems for Django, but if you have contributions or other improvements, they're welcome.
+django-lean aims to be a collection of tools for [Lean Startups](http://www.startuplessonslearned.com/search/label/lean%20startup|Lean Startups) using the Django platform. Currently it provides a framework for implementing [split-test experiments](http://www.startuplessonslearned.com/search/label/split-test) in JavaScript, Python, or Django template code along with administrative views for analyzing the results of those experiments.
 
 ## Discussion Group
 
-For discussions related to the use or development of django-lean please use our [[http://groups.google.com/group/django-lean|Google group]].
+For discussions related to the use or development of django-lean please use our [Google Group](http://groups.google.com/group/django-lean).
 
 ## Features
 
