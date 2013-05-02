@@ -1,27 +1,27 @@
-= JohnMarkSchofield's django-lean fork
+# JohnMarkSchofield's django-lean fork
 
-== Meta
+## Meta
 
 
 This is an un-blessed fork of [Jeremy Dunck's blessed fork](https://github.com/anandhenry2002/django-lean) of [Akoha's Django-Lean](https://bitbucket.org/akoha/django-lean/wiki/Home).
 
-== Welcome ==
+## Welcome
 
 django-lean aims to be a collection of tools for [[http://www.startuplessonslearned.com/search/label/lean%20startup|Lean Startups]] using the Django platform. Currently it provides a framework for implementing [[http://www.startuplessonslearned.com/search/label/split-test|split-test experiments]] in JavaScript, Python, or Django template code along with administrative views for analyzing the results of those experiments.
 
 django-lean is one of the more mature AB testing systems for Django, but if you have contributions or other improvements, they're welcome.
 
-== Discussion Group ==
+## Discussion Group
 
 For discussions related to the use or development of django-lean please use our [[http://groups.google.com/group/django-lean|Google group]].
 
-== Features ==
+## Features
 
 django-lean allows you to perform split-test experiments on your users. In brief, this involves exposing 50% of your users to one implementation and 50% to another, then comparing the performance of these two groups with regards to certain metrics.  Multi-variate testing (that is, a single experiment with more than 2 tested outcomes) are not yet supported, but we'd welcome changes to support that.
 
 Often you can achive the goals of multivariate testing through concurrent experiments with the same control but different treatments, or through iteration of winner-as-control vs new candidate treatmemnt.
 
-=== Experiments Types ===
+### Experiments Types
 
 django-lean supports two kinds of experiments currently:
 
@@ -30,30 +30,30 @@ django-lean supports two kinds of experiments currently:
 
 There's no real reason why one couldn't measure engagement of anonymous users or conversions of registered users (i.e. "basic to pro") but we didn't need this, so they're not implemented (again, patches welcome!).
 
-=== Experiment Reports ===
+### Experiment Reports
 
 django-lean provides daily reports of experiment results, including confidence levels.
 
 * For conversion experiments, results and confidence are displayed per conversion goal type (and for 'any' goal). Confidence is calculated using the chi-square method.
 * For engagement experiments, confidence is calculated using the Student's t-test method.
 
-Experiment reports are prepared using the {{{update_experiment_reports}}} management command. It's advisable to execute this command from a nightly cron-job.
+Experiment reports are prepared using the *update_experiment_reports* management command. It's advisable to execute this command from a nightly cron-job.
 
-=== Bot Exclusion ===
+### Bot Exclusion
 
 django-lean attempts to exclude non-human visitors from experiment reports by only recording data for visitors who have JavaScript enabled.
 
-=== Experiment Management ===
+### Experiment Management
 
-Experiments may be defined, enabled, disabled, or promoted via the {{{django-admin}}} interface. You may also define experiments in your source tree and have them automatically loaded into the database (see [[https://github.com/votizen/django-lean/blob/master/django_lean/experiments/loader.py|{{{experiments.loader.ExperimentLoader}}}]]).
+Experiments may be defined, enabled, disabled, or promoted via the *django-admin* interface. You may also define experiments in your source tree and have them automatically loaded into the database (see [[https://github.com/votizen/django-lean/blob/master/django_lean/experiments/loader.py|*experiments.loader.ExperimentLoader*]]).
 
 Each experiment has a state, which affects whether visitors are enrolled in the experiment, and whether they see the control or test case of the experiment.
 
-* {{{disabled}}}: No visitors are enrolled in the experiment. All visitors see the //control// case of the experiment, even if they were previously enrolled in the test group.
-* {{{enabled}}}: All visitors who encounter the experiment are enrolled randomly in either the test or control group, and see the corresponding case.
-* {{{promoted}}}: No visitors are enrolled in the experiment. All visitors see the //test// case of the experiment, even if they were previously enrolled in the control group.
+* *disabled*: No visitors are enrolled in the experiment. All visitors see the //control// case of the experiment, even if they were previously enrolled in the test group.
+* *enabled*: All visitors who encounter the experiment are enrolled randomly in either the test or control group, and see the corresponding case.
+* *promoted*: No visitors are enrolled in the experiment. All visitors see the //test// case of the experiment, even if they were previously enrolled in the control group.
 
-New experiments start in the {{{disabled}}} state.
+New experiments start in the *disabled* state.
 
 === Experiment Implementation ===
 
@@ -61,7 +61,7 @@ django-lean makes it easy to implement experiments in Python, JavaScript, or Dja
 
 ==== Python ====
 
-{{{
+*
 #!python
 from experiments.models import Experiment
 from experiments.utils import WebUser
@@ -74,11 +74,11 @@ def my_view_func(request, *args, **kwargs):
     else:
         view = edit_profile_control
     return view(request, *args, **kwargs)
-}}}
+*
 
 ==== Django Templates ====
 
-{{{
+*
 #!html+django
 
 {% load experiments %}
@@ -96,12 +96,12 @@ def my_view_func(request, *args, **kwargs):
 {% endexperiment %}
 
 </p>
-}}}
+*
 
 ==== JavaScript ====
 
 //(In your HTML template:)//
-{{{
+*
 #!html+django
 
 {% load experiments %}
@@ -118,17 +118,17 @@ def my_view_func(request, *args, **kwargs):
 ...
 
 {% clientsideexperiment <experiment_name> %}
-}}}
+*
 
 //(In your JavaScript:)//
-{{{
+*
 #!javascript
 if (experiment.test("<experiment_name>")) {
   // test case
 } else {
   // control case
 }
-}}}
+*
 
 === Conversion Tracking ===
 
@@ -136,11 +136,11 @@ Conversion experiments track the rate of conversion for their test and control g
 
 ==== Defining Conversion Goals ====
 
-Conversion goals are defined by placing rows in the {{{experiments_goaltypes}}} table. This table is not currently exposed via {{{django-admin}}} but probably should be (patches welcome!). Alternative ways to populate it include manually via SQL, manually via the Django shell, via your {{{initial_data}}} fixture, or by defining a data migration in your database management tool (we use [[http://south.aeracode.org/|{{{django-south}}}]]).
+Conversion goals are defined by placing rows in the *experiments_goaltypes* table. This table is not currently exposed via *django-admin* but probably should be (patches welcome!). Alternative ways to populate it include manually via SQL, manually via the Django shell, via your *initial_data* fixture, or by defining a data migration in your database management tool (we use [[http://south.aeracode.org/|*django-south*]]).
 
 Here is an example of defining a goal type using the Django shell:
 
-{{{
+*
 #!pycon
 erik-wrights-macbook-pro:akoha erikwright$ ./manage.py shell --plain
 Python 2.6.2 (r262:71600, Jul 16 2009, 12:11:28)
@@ -151,7 +151,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> GoalType.objects.create(name="signup")
 <GoalType: <GoalType: signup>>
 >>>
-}}}
+*
 
 ==== Recording Conversions ====
 
@@ -159,7 +159,7 @@ Once you have defined a conversion goal type, you must record it when it is achi
 
 ===== Recording Conversions Programatically =====
 
-{{{
+*
 #!python
 from experiments.models import GoalRecord
 from experiments.utils import WebUser
@@ -170,16 +170,16 @@ def my_signup_view_func(request, *args, **kwargs):
     # ... process the signup request
     GoalRecord.record("signup", WebUser(request))
     # ...
-}}}
+*
 
 ==== Recording Conversions Using a Tracking Pixel ====
 
 Sometimes a conversion happens somewhere that you don't control (for example, an e-commerce platform). In this case, you can record the conversion by placing a transparent 1x1 pixel on the page that users see after the conversion occurs (i.e., the 'Thank You' page after purchase).
 
-{{{
+*
 #!html
 <img src="http://example.com/experiments/goal/purchase" height="1" width="1" />
-}}}
+*
 
 === Engagement Tracking ===
 
@@ -187,7 +187,7 @@ Engagement experiments track an arbitrary engagement value for each user in thei
 
 Here is an example engagement calculator:
 
-{{{
+*
 #!python
 class MyEngagementScoreCalculator(object):
 
@@ -203,16 +203,16 @@ class MyEngagementScoreCalculator(object):
         engagement_score = ((float)(period_purchase_total) /
                                                         days_in_period)
         return engagement_score
-}}}
+*
 
-Your engagement calculator must be registered in {{{settings.py}}} as follows:
+Your engagement calculator must be registered in *settings.py* as follows:
 
-{{{
+*
 #!python
 ...
 LEAN_ENGAGEMENT_CALCULATOR = "mycompany.MyEngagementScoreCalculator"
 ...
-}}}
+*
 
 == Dependencies ==
 
@@ -230,28 +230,28 @@ You may optionally use [[http://south.aeracode.org/|South]] in order to facilita
 
 django-lean has been developed with Django 1.0. Unit Tests run successfully with Django 1.1 but it has not been tried in production. If you successfully run it with another version, please update this documentation.
 
-# Install django-lean using {{{easy_install}}}
-# Add {{{experiments}}} to {{{INSTALLED_APPS}}} in {{{settings.py}}}
-# Ensure that {{{django.core.context_processors.request}}} is in {{{TEMPLATE_CONTEXT_PROCESSORS}}} in {{{settings.py}}}
-# Run {{{manage.py syncdb}}} to set up the django-lean tables.
-# Run {{{manage.py test experiments}}} to see if everything is set up correctly.
+# Install django-lean using *easy_install*
+# Add *experiments* to *INSTALLED_APPS* in *settings.py*
+# Ensure that *django.core.context_processors.request* is in *TEMPLATE_CONTEXT_PROCESSORS* in *settings.py*
+# Run *manage.py syncdb* to set up the django-lean tables.
+# Run *manage.py test experiments* to see if everything is set up correctly.
 # For every page that will contain an experiment (or in the response after a server-side experiment):
 ## Ensure that JQuery is included.
-## Ensure that {{{experiments/include/experiments.js}}} is somehow included (perhaps copy it where your static files go, include it as part of your existing generated JS files, map it from {{{urls.py}}}, include it directly in a {{{<script/>}}} tag, etc.).
-## Ensure that {{{experiments/include/experiment_enrollment.html}}} is rendered by your template.
-# Install the admin and public url mappings in your site {{{urls.py}}}
-# Register your engagement calculator in {{{settings.py}}}.
+## Ensure that *experiments/include/experiments.js* is somehow included (perhaps copy it where your static files go, include it as part of your existing generated JS files, map it from *urls.py*, include it directly in a *<script/>* tag, etc.).
+## Ensure that *experiments/include/experiment_enrollment.html* is rendered by your template.
+# Install the admin and public url mappings in your site *urls.py*
+# Register your engagement calculator in *settings.py*.
 # Define one or more conversion goal types.
 # Add conversion goal recording where appropriate.
 # Define, implement, and enable an experiment
-# Call {{{manage.py update_experiment_reports}}} nightly.
+# Call *manage.py update_experiment_reports* nightly.
 # Experiment, learn, repeat!
 
 === Installing URL Mappings ===
 
 The following snippet added to {{urls.py}} should properly install the needed URL mappings (adjust to meet your needs):
 
-{{{
+*
 #!python
 ...
 urlpatterns += patterns('',
@@ -259,11 +259,11 @@ urlpatterns += patterns('',
     url(r'^django-lean/', include('experiments.urls')),
 )
 ...
-}}}
+*
 
 == Development ==
 
-{{{
+*
 #!console
 erik-wrights-macbook-pro:~ erikwright$ hg clone http://bitbucket.org/akoha/django-lean/
 destination directory: django-lean
@@ -330,7 +330,7 @@ Ran 30 tests in 24.305s
 OK
 Destroying test database...
 erik-wrights-macbook-pro:django-lean erikwright$
-}}}
+*
 
 == Other Resources ==
 
