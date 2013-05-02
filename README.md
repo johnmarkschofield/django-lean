@@ -1,27 +1,29 @@
+= JohnMarkSchofield's django-lean fork
 
-This is an un-blessed fork of Jeremy Dunck's blessed fork [https://github.com/anandhenry2002/django-lean] of Akoha's Django-Lean [https://bitbucket.org/akoha/django-lean/wiki/Home]
+== Meta
 
-<<toc Home>>
+
+This is an un-blessed fork of [Jeremy Dunck's blessed fork](https://github.com/anandhenry2002/django-lean) of [Akoha's Django-Lean](https://bitbucket.org/akoha/django-lean/wiki/Home).
 
 == Welcome ==
 
-{{{django-lean}}} aims to be a collection of tools for [[http://www.startuplessonslearned.com/search/label/lean%20startup|Lean Startups]] using the Django platform. Currently it provides a framework for implementing [[http://www.startuplessonslearned.com/search/label/split-test|split-test experiments]] in JavaScript, Python, or Django template code along with administrative views for analyzing the results of those experiments.
+django-lean aims to be a collection of tools for [[http://www.startuplessonslearned.com/search/label/lean%20startup|Lean Startups]] using the Django platform. Currently it provides a framework for implementing [[http://www.startuplessonslearned.com/search/label/split-test|split-test experiments]] in JavaScript, Python, or Django template code along with administrative views for analyzing the results of those experiments.
 
-{{{django-lean}}} is one of the more mature AB testing systems for Django, but if you have contributions or other improvements, they're welcome.
+django-lean is one of the more mature AB testing systems for Django, but if you have contributions or other improvements, they're welcome.
 
 == Discussion Group ==
 
-For discussions related to the use or development of {{{django-lean}}} please use our [[http://groups.google.com/group/django-lean|Google group]].
+For discussions related to the use or development of django-lean please use our [[http://groups.google.com/group/django-lean|Google group]].
 
 == Features ==
 
-{{{django-lean}}} allows you to perform split-test experiments on your users. In brief, this involves exposing 50% of your users to one implementation and 50% to another, then comparing the performance of these two groups with regards to certain metrics.  Multi-variate testing (that is, a single experiment with more than 2 tested outcomes) are not yet supported, but we'd welcome changes to support that.
+django-lean allows you to perform split-test experiments on your users. In brief, this involves exposing 50% of your users to one implementation and 50% to another, then comparing the performance of these two groups with regards to certain metrics.  Multi-variate testing (that is, a single experiment with more than 2 tested outcomes) are not yet supported, but we'd welcome changes to support that.
 
 Often you can achive the goals of multivariate testing through concurrent experiments with the same control but different treatments, or through iteration of winner-as-control vs new candidate treatmemnt.
 
 === Experiments Types ===
 
-{{{django-lean}}} supports two kinds of experiments currently:
+django-lean supports two kinds of experiments currently:
 
 * Anonymous Conversion experiments compare the achievement of goals you define (i.e. "register" or "add to cart") amongst two groups of anonymous users.
 * Registered Engagement experiments compare a quantitative measure of engagement that you define (i.e., activity, revenue, time on site, ...) amongst two groups of registered users.
@@ -30,7 +32,7 @@ There's no real reason why one couldn't measure engagement of anonymous users or
 
 === Experiment Reports ===
 
-{{{django-lean}}} provides daily reports of experiment results, including confidence levels.
+django-lean provides daily reports of experiment results, including confidence levels.
 
 * For conversion experiments, results and confidence are displayed per conversion goal type (and for 'any' goal). Confidence is calculated using the chi-square method.
 * For engagement experiments, confidence is calculated using the Student's t-test method.
@@ -39,7 +41,7 @@ Experiment reports are prepared using the {{{update_experiment_reports}}} manage
 
 === Bot Exclusion ===
 
-{{{django-lean}}} attempts to exclude non-human visitors from experiment reports by only recording data for visitors who have JavaScript enabled.
+django-lean attempts to exclude non-human visitors from experiment reports by only recording data for visitors who have JavaScript enabled.
 
 === Experiment Management ===
 
@@ -55,7 +57,7 @@ New experiments start in the {{{disabled}}} state.
 
 === Experiment Implementation ===
 
-{{{django-lean}}} makes it easy to implement experiments in Python, JavaScript, or Django templates. Here are some examples:
+django-lean makes it easy to implement experiments in Python, JavaScript, or Django templates. Here are some examples:
 
 ==== Python ====
 
@@ -214,7 +216,7 @@ LEAN_ENGAGEMENT_CALCULATOR = "mycompany.MyEngagementScoreCalculator"
 
 == Dependencies ==
 
-{{{django-lean}}} has a number of dependencies:
+django-lean has a number of dependencies:
 
 * [[http://code.google.com/p/pymox/|Mox]]
 * [[http://www.crummy.com/software/BeautifulSoup/|Beautiful Soup]]
@@ -222,16 +224,16 @@ LEAN_ENGAGEMENT_CALCULATOR = "mycompany.MyEngagementScoreCalculator"
 
 Mox and Beautiful Soup are used exclusively by unit tests. JQuery is used only to execute a single, trivial AJAX request and could easily be removed from the dependency list if one were motivated (patch please!).
 
-You may optionally use [[http://south.aeracode.org/|South]] in order to facilitate migrations of the {{{django-lean}}} database schema, but it is not required:
+You may optionally use [[http://south.aeracode.org/|South]] in order to facilitate migrations of the django-lean database schema, but it is not required:
 
 == Installation ==
 
-{{{django-lean}}} has been developed with Django 1.0. Unit Tests run successfully with Django 1.1 but it has not been tried in production. If you successfully run it with another version, please update this documentation.
+django-lean has been developed with Django 1.0. Unit Tests run successfully with Django 1.1 but it has not been tried in production. If you successfully run it with another version, please update this documentation.
 
-# Install {{{django-lean}}} using {{{easy_install}}}
+# Install django-lean using {{{easy_install}}}
 # Add {{{experiments}}} to {{{INSTALLED_APPS}}} in {{{settings.py}}}
 # Ensure that {{{django.core.context_processors.request}}} is in {{{TEMPLATE_CONTEXT_PROCESSORS}}} in {{{settings.py}}}
-# Run {{{manage.py syncdb}}} to set up the {{{django-lean}}} tables.
+# Run {{{manage.py syncdb}}} to set up the django-lean tables.
 # Run {{{manage.py test experiments}}} to see if everything is set up correctly.
 # For every page that will contain an experiment (or in the response after a server-side experiment):
 ## Ensure that JQuery is included.
